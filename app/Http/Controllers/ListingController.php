@@ -15,7 +15,7 @@ class ListingController extends Controller
                         //you can either user the dependency injection or the helper function, the end result is the same
         return view('listings.index', [
             // 'listings' => Listing::all()
-            'listings' => Listing::latest()->filter(request(['tag']))->get()
+            'listings' => Listing::latest()->filter(request(['tag', 'search']))->get()
         ]);
     }
     
