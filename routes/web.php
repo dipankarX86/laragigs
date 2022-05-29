@@ -30,6 +30,18 @@ use App\Models\Listing;
 //     // dd($request->name.' from '.$request->city);
 //     return $request->name.' from '.$request->city;  // now we can use these values for whatever we want
 // });
+// //  Single Listing
+// Route::get('/listings/{id}', function($id) {
+//     $listing = Listing::find($id);
+//     if($listing) {
+//         return view('listing', [
+//             'listing' => Listing::find($id)
+//         ]);
+//     } else {
+//         abort('404');
+//     }
+// });
+
 
 // All Listings
 Route::get('/', function () {
@@ -41,8 +53,8 @@ Route::get('/', function () {
 
 
 //  Single Listing
-Route::get('/listings/{id}', function($id) {
+Route::get('/listings/{listing}', function(Listing $listing) {  //type conversion from id to object
     return view('listing', [
-        'listing' => Listing::find($id)
+        'listing' => $listing
     ]);
 });
