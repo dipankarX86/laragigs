@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,5 +31,8 @@ class AppServiceProvider extends ServiceProvider
 
         // fillable properties issues, to unguard putting them into the database
         Model::unguard();
+
+        // paginator template
+        // Paginator::useBootstrapThree();
     }
 }

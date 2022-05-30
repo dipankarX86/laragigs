@@ -11,12 +11,15 @@ class ListingController extends Controller
     // Show all listings
     // public function index(Request $request) {
     public function index() {
+        // dd(Listing::latest()->filter(request(['tag', 'search']))->paginate(2));
         // dd($request);
         // dd(request()->tag);  // because request is a helper function which work the same way as dd
                         //you can either user the dependency injection or the helper function, the end result is the same
         return view('listings.index', [
             // 'listings' => Listing::all()
-            'listings' => Listing::latest()->filter(request(['tag', 'search']))->get()
+            // 'listings' => Listing::latest()->filter(request(['tag', 'search']))->get()
+            // 'listings' => Listing::latest()->filter(request(['tag', 'search']))->simplePaginate(2)
+            'listings' => Listing::latest()->filter(request(['tag', 'search']))->paginate(6)
         ]);
     }
     
