@@ -9,6 +9,9 @@ class Listing extends Model
 {
     use HasFactory;
 
+    //protected $fillable = ['title', 'company', 'location', 'website', 'email', 'description', 'tags'];
+    //// any resource you create you can add this fillable as protected, if you want to be able to submit forms like that
+
     public function scopeFilter($query, array $filters) {
         if($filters['tag'] ?? false) {
             $query->where('tags', 'like', '%' . request('tag') . '%');

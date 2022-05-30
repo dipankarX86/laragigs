@@ -43,10 +43,23 @@ use App\Models\Listing;
 //     }
 // });
 
+// common resource routes:
+// index - show all listings
+// show - show single listing
+// create - show form to create new listing
+// store - store new listing
+// edit - show form to edit listing
+// update - update listing
+// destroy - delete listing
 
 // All Listings
 Route::get('/', [ListingController::class, 'index']);
 
+// show create form
+Route::get('/listings/create', [ListingController::class, 'create']);
 
-//  Single Listing
+// Store Listing data
+Route::post('/listings', [ListingController::class, 'store']);
+
+// Single Listing
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
