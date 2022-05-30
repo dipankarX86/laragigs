@@ -37,6 +37,7 @@ class ListingController extends Controller
 
     // Store listing data
     public function store(Request $request) {
+        // dd($request->file('logo')->store());
         // dd($request->all());
         // validation
         $formFields = $request->validate([
@@ -48,6 +49,11 @@ class ListingController extends Controller
             'tags' => 'required',
             'description' => 'required'
         ]);
+
+        if($request->hasFile('logo')) {
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');  
+            // this does two work at same time, stores the image in file and stores the link ib the database
+        }
 
         Listing::create($formFields);
 
