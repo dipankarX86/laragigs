@@ -62,6 +62,8 @@ class ListingController extends Controller
             // this does two work at same time, stores the image in file and stores the link ib the database
         }
 
+        $formFields['user_id'] = auth()->id();
+
         Listing::create($formFields);
 
         return redirect('/')->with('message', 'Listing Created Successfully');
@@ -104,6 +106,13 @@ class ListingController extends Controller
     public function destroy(Listing $listing) {
         $listing->delete();
         return redirect('/')->with('message', 'Listing Deleted Successfully');
+    }
+
+
+    // manage listing
+    public function manage()
+    {
+        return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
     }
 
     
