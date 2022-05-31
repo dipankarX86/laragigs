@@ -23,4 +23,15 @@ class Listing extends Model
                 ->orWhere('tags', 'like', '%' . request('search') . '%');
         }
     }
+
+    // here we define a relationship between listings and users, 
+    // the way that we do that is by creating a function
+    // 
+    // Relationship to user
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    // for these relations and other important functions we should look at the eloquent documentation
+
 }
