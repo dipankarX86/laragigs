@@ -24,6 +24,7 @@
                     class="border border-gray-200 rounded p-2 w-full"
                     name="company"
                     value="{{ $listing->company }}"
+                    {{-- some doubt here --}}
                 />
 
                 @error('company')
@@ -161,7 +162,7 @@
                 <button
                     class="bg-laravel text-white rounded py-2 px-4 hover:bg-black"
                 >
-                    Create Gig
+                    Edit Gig
                 </button>
 
                 <a href="/" class="text-black ml-4"> Back </a>

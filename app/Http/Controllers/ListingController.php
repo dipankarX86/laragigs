@@ -8,6 +8,7 @@ use Illuminate\Validation\Rule;
 
 class ListingController extends Controller
 {
+    //
     // Show all listings
     // public function index(Request $request) {
     public function index() {
@@ -23,6 +24,8 @@ class ListingController extends Controller
         ]);
     }
     
+
+    //
     // Show single listing
     public function show(Listing $listing) {  //type conversion from id to object
         return view('listings.show', [
@@ -30,11 +33,15 @@ class ListingController extends Controller
         ]);
     }
     
+
+    //
     // show create form
     public function create() {
         return view('listings.create');
     }
 
+
+    //
     // Store listing data
     public function store(Request $request) {
         // dd($request->file('logo')->store());
@@ -60,10 +67,36 @@ class ListingController extends Controller
         return redirect('/')->with('message', 'Listing Created Successfully');
     }
 
+
+    //
     // show edit form
     public function edit(Listing $listing) {
         // dd($listing);
         return view('listings.edit', ['listing' => $listing]);
     }
+
+
+    //
+    // Update Listing
+    public function update(Request $request, Listing $listing) {
+        $formFields = $request->validate([
+            'title' => 'required',
+            'company' => 'required',  // some doubt here
+            'location' => 'required',
+            'website' => 'required',
+            'email' => ['required', 'email'],
+            'tags' => 'required',
+            'description' => 'required'
+        ]);
+
+        if($request->hasFile('logo')) {
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
+        $listing->update($formFields);
+
+        return back()->with('message', 'Listing Updated Successfully');
+    }
+
     
 }
