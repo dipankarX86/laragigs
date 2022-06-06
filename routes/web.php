@@ -2,6 +2,7 @@
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ListingController;
@@ -93,3 +94,8 @@ Route::get('/login', [UserController::class, 'login'])->name('login')->middlewar
 
 // Log In User
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+
+
+
+// static pages and react pages
+// return File::get(public_path() . '/dashboard/index.html');
